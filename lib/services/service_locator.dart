@@ -9,6 +9,7 @@ void setupGetIt() {
   // state management layer
   getIt.registerLazySingleton<SettingsStateManager>(() => SettingsStateManager());
 
-  // service layer
+  // here can go other init, for service layer
   //getIt.registerLazySingleton<StorageService>(() => SharedPreferencesStorage());
+
 }

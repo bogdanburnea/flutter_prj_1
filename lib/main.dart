@@ -10,9 +10,13 @@ void main() {
   // Providing the UI layer with a reference to the state management layer
   setupGetIt();
 
-  // get a random userName and set the user state
+  // get the singleton reference to SettingsStateManager
   final settingsStateManager = getIt<SettingsStateManager>();
+
+  // generate a random userName
   String randomUsername = UsernameGen.generateWith();
+
+  // set the user state
   settingsStateManager.setUserName(randomUsername);
 
   // here can go other init, for example contacting web server
