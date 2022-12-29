@@ -11,6 +11,9 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// use a stateful widget whenever you need to initialize something when the page first loads
+// The State class of a stateful widget has a initState method.
+
 class _HomePageState extends State<HomePage> {
   int _pageIndex = 0;
   String _title = "Smart Reminders App";
@@ -18,11 +21,13 @@ class _HomePageState extends State<HomePage> {
   @override
   initState(){
     _pageIndex = 0;
-    _title = "Smart Reminders App";
+    _title = "Smart Reminders App - Dashboard";
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('building HomePage');
     return AdaptiveScaffold(
       title: Text(_title),
       currentIndex: _pageIndex,
