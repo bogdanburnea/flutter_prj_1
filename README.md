@@ -1,10 +1,3 @@
 # flutter_prj_1
 
-# example for random username generator
-import 'package:username_gen/username_gen.dart';
-
-var username = UsernameGen.random(); // sharpened-whiskey87
-
-//OR
-
-final username = UsernameGen().generate(); // sharpened-whiskey87
+https://suragch.medium.com/flutter-state-management-for-minimalists-4c71a2f2f0c1
