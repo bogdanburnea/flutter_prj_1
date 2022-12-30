@@ -1,9 +1,9 @@
+import 'package:flutter_prj_1/state/dark_theme_state_notifier.dart';
 import 'package:flutter_prj_1/state/user_state_notifier.dart';
 
 // logic for the page, completely decoupled from UI, link to one or more notifiers
 // The job of the page’s state management class is to manage the notifiers
 class SettingsStateManager {
-
   // state manager presents setters/logic methods for the state values
   // setters/logic methods are called from UI and perform business logic
 
@@ -17,22 +17,36 @@ class SettingsStateManager {
 
   final userStateNotifier = UserStateNotifier();
 
+  final darkThemeStateNotifier = DarkThemeStateNotifier();
+
+  String getUserName() {
+    return userStateNotifier.value;
+  }
+
   void setUserName(String userName) {
     userStateNotifier.setUserName(userName);
   }
 
-  // The way to make these notifiers notify any listeners is by changing their value.
-  // Here is the implementation of the pause method, witch use two notifiers
-  // so logic can be composed of more notifiers that can change more state variables
-  //
-  // class TimerPageManager {
-  //   final timeLeftNotifier = ...
-  //   final buttonNotifier = ...
-  //   void pause() {
-  //     timeLeftNotifier.pause();
-  //     buttonNotifier.value = ButtonState.paused;
-  //   }
-  //   ...
-  // }
+  void setDarkTheme(bool darkTheme){
+    darkThemeStateNotifier.setDarkTheme(darkTheme);
+  }
+
+  bool getDarkTheme(){
+    return darkThemeStateNotifier.value;
+  }
+
+// The way to make these notifiers notify any listeners is by changing their value.
+// Here is the implementation of the pause method, witch use two notifiers
+// so logic can be composed of more notifiers that can change more state variables
+//
+// class TimerPageManager {
+//   final timeLeftNotifier = ...
+//   final buttonNotifier = ...
+//   void pause() {
+//     timeLeftNotifier.pause();
+//     buttonNotifier.value = ButtonState.paused;
+//   }
+//   ...
+// }
 
 }

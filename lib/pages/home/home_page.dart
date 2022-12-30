@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   String _title = "Smart Reminders App";
 
   @override
-  initState(){
+  initState() {
     _pageIndex = 0;
     _title = "Smart Reminders App - Dashboard";
     super.initState();
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('building HomePage');
+    print('[HomePage] build');
     return AdaptiveScaffold(
       title: Text(_title),
       currentIndex: _pageIndex,
@@ -40,17 +40,31 @@ class _HomePageState extends State<HomePage> {
       onNavigationIndexChange: (newIndex) {
         setState(() {
           _pageIndex = newIndex;
-          switch(_pageIndex) {
-            case 0: { _title = 'Smart Reminders App - Dashboard'; }
-            break;
-            case 1: { _title = 'Smart Reminders App - Reminders'; }
-            break;
-            case 2: { _title = 'Smart Reminders App - Settings'; }
-            break;
-          }
+          _title = _titleAtIndex(_pageIndex);
         });
       },
     );
+  }
+
+  static String _titleAtIndex(int index) {
+    switch (index) {
+      case 0:
+        {
+          return 'Smart Reminders App - Dashboard';
+        }
+      case 1:
+        {
+          return 'Smart Reminders App - Reminders';
+        }
+      case 2:
+        {
+          return 'Smart Reminders App - Settings';
+        }
+      default:
+        {
+          return 'Smart Reminders App - Home';
+        }
+    }
   }
 
   static Widget _pageAtIndex(int index) {
