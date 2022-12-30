@@ -26,11 +26,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 switch (index) {
                   case 0:
                     {
-                      return Container(
+                      return SizedBox(
                         height: 50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             DarkThemeWidget(),
                           ],
                         ),
@@ -39,11 +39,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
                   case 1:
                     {
-                      return Container(
+                      return SizedBox(
                         height: 50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             UserNameWidget(),
                           ],
                         ),
@@ -52,9 +52,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
                   default:
                     {
-                      return Container(
+                      return const SizedBox(
                         height: 50,
-                        child: const Center(child: Text('')),
+                        child: Center(child: Text(' ')),
                       );
                     }
                 }

@@ -19,7 +19,7 @@ class DarkThemeWidget extends StatelessWidget {
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
+                children: const <Widget>[
                   Text('Dark Theme'),
                 ],
               ),
