@@ -6,4 +6,8 @@ abstract class SharedPreferencesStorageService {
   Future<bool?> isDarkTheme();
 
   Future<void> setDarkTheme(bool darkTheme);
+
+  Future<List<String>?> getCategoryList();
+
+  Future<void> setCategoryList(List<String> categoryList);
 }

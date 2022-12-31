@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/settings/widgets/dark_theme_widget.dart';
+import 'package:flutter_prj_1/pages/settings/widgets/category_widget.dart';
 
 // pure ui widget, so no ValueListenableBuilder wrapper
 
@@ -17,7 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       body: Center(
           child: ListView.separated(
-              itemCount: 1,
+              itemCount: 2,
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),
               padding: const EdgeInsets.all(10),
@@ -31,6 +32,17 @@ class _SettingsPageState extends State<SettingsPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
                             DarkThemeWidget(),
+                          ],
+                        ),
+                      );
+                    }
+                  case 1:
+                    {
+                      return Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            CategoryWidget(),
                           ],
                         ),
                       );

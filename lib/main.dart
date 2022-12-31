@@ -10,11 +10,15 @@ void main() {
   // Providing the UI layer with a reference to the state management layer
   setupGetIt();
 
+  // settings state
   final settingsStateManager = getIt<SettingsStateManager>();
 
   print(
       '[main] settingsStateManager.getDarkTheme: ${settingsStateManager.getDarkTheme()}');
+  print(
+      '[main] settingsStateManager.getCategoryList: ${settingsStateManager.getCategoryList()}');
 
+  // user profile state
   final userProfileStateManager = getIt<UserProfileStateManager>();
 
   if (userProfileStateManager.getUserName() == "initialUserName") {
