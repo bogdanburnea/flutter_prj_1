@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_prj_1/pages/settings/widgets/dark_theme_widget.dart';
+import 'package:flutter_prj_1/pages/user_profile/widgets/user_name_widget.dart';
 
 // pure ui widget, so no ValueListenableBuilder wrapper
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class UserProfilePage extends StatefulWidget {
+  const UserProfilePage({super.key});
 
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _UserProfilePageState createState() => _UserProfilePageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _UserProfilePageState extends State<UserProfilePage> {
   @override
   Widget build(BuildContext context) {
-    print('[SettingsPage] build');
+    print('[UserProfilePage] build');
     return Scaffold(
       body: Center(
           child: ListView.separated(
@@ -30,7 +30,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
-                            DarkThemeWidget(),
+                            UserNameWidget(),
                           ],
                         ),
                       );

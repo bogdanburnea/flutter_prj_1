@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_prj_1/pages/home/widgets/third_party/adaptive_scaffold.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
+import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -15,56 +15,94 @@ class HomePage extends StatefulWidget {
 // The State class of a stateful widget has a initState method.
 
 class _HomePageState extends State<HomePage> {
+  static const dashboard_label = 'Dashboard';
+  static const reminders_label = 'Reminders';
+  static const settings_label = 'Settings';
+  static const user_profile_label = 'User Profile';
+
   int _pageIndex = 0;
-  String _title = "Smart Reminders App";
+  String _title = dashboard_label;
 
   @override
   initState() {
     _pageIndex = 0;
-    _title = "Smart Reminders App - Dashboard";
+    _title = dashboard_label;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     print('[HomePage] build');
-    return AdaptiveScaffold(
-      title: Text(_title),
-      currentIndex: _pageIndex,
-      destinations: const [
-        AdaptiveScaffoldDestination(title: 'Dashboard', icon: Icons.dashboard),
-        AdaptiveScaffoldDestination(title: 'Reminders', icon: Icons.list),
-        AdaptiveScaffoldDestination(title: 'Settings', icon: Icons.settings),
-      ],
-      body: _pageAtIndex(_pageIndex),
-      onNavigationIndexChange: (newIndex) {
-        setState(() {
-          _pageIndex = newIndex;
-          _title = _titleAtIndex(_pageIndex);
-        });
-      },
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_title),
+      ),
+      body: Center(
+        child: _pageAtIndex(_pageIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedIconTheme: const IconThemeData(color: Colors.blue, size: 30),
+        unselectedItemColor: Colors.blue,
+        selectedIconTheme: const IconThemeData(color: Colors.teal, size: 40),
+        selectedItemColor: Colors.teal,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: dashboard_label,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: reminders_label,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: settings_label,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: user_profile_label,
+          ),
+        ],
+        currentIndex: _pageIndex,
+        onTap: _onItemTapped,
+      ),
     );
   }
 
-  static String _titleAtIndex(int index) {
-    switch (index) {
-      case 0:
-        {
-          return 'Smart Reminders App - Dashboard';
-        }
-      case 1:
-        {
-          return 'Smart Reminders App - Reminders';
-        }
-      case 2:
-        {
-          return 'Smart Reminders App - Settings';
-        }
-      default:
-        {
-          return 'Smart Reminders App - Home';
-        }
-    }
+  void _onItemTapped(int index) {
+    setState(() {
+      _pageIndex = index;
+
+      switch (index) {
+        case 0:
+          {
+            _title = dashboard_label;
+          }
+          break;
+        case 1:
+          {
+            _title = reminders_label;
+          }
+          break;
+        case 2:
+          {
+            _title = settings_label;
+          }
+          break;
+        case 3:
+          {
+            _title = user_profile_label;
+          }
+          break;
+        default:
+          {
+            _title = dashboard_label;
+          }
+      }
+    });
   }
 
   static Widget _pageAtIndex(int index) {
@@ -80,9 +118,12 @@ class _HomePageState extends State<HomePage> {
 
     if (index == 2) {
       return const SettingsPage();
-      //return const Center(child: Text('Settings page'));
     }
 
-    return const Center(child: Text('Settings page'));
+    if (index == 3) {
+      return const UserProfilePage();
+    }
+
+    return const Center(child: Text('Dashboard page'));
   }
 }

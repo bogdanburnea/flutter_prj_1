@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/home/home_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
+import 'package:flutter_prj_1/pages/user_profile/user_profile_state_manager.dart';
 import 'package:flutter_prj_1/services/service_locator.dart';
 import 'package:username_gen/username_gen.dart';
 
@@ -12,16 +13,16 @@ void main() {
   final settingsStateManager = getIt<SettingsStateManager>();
 
   print(
-      '[main] settingsStateManager.getUserName: ${settingsStateManager.getUserName()}');
-  print(
       '[main] settingsStateManager.getDarkTheme: ${settingsStateManager.getDarkTheme()}');
 
-  if (settingsStateManager.getUserName() == "initialUserName") {
+  final userProfileStateManager = getIt<UserProfileStateManager>();
+
+  if (userProfileStateManager.getUserName() == "initialUserName") {
     // generate a random userName
     String randomUsername = UsernameGen.generateWith();
 
     // set the user state
-    settingsStateManager.setUserName(randomUsername);
+    userProfileStateManager.setUserName(randomUsername);
   }
 
   // here can go other init, for example contacting web server
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
           ),
           themeMode: darkTheme ? ThemeMode.dark : ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          home: const HomePage(title: 'Smart Reminders App - Home'),
+          home: HomePage(title: 'Smart Reminders App - Home'),
         );
       },
     );

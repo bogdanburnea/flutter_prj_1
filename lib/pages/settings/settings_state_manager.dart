@@ -1,5 +1,4 @@
 import 'package:flutter_prj_1/state/dark_theme_state_notifier.dart';
-import 'package:flutter_prj_1/state/user_state_notifier.dart';
 
 // logic for the page, completely decoupled from UI, link to one or more notifiers
 // The job of the page’s state management class is to manage the notifiers
@@ -15,23 +14,13 @@ class SettingsStateManager {
 
   // decoupling an abstract service from its concrete implementation
 
-  final userStateNotifier = UserStateNotifier();
-
   final darkThemeStateNotifier = DarkThemeStateNotifier();
 
-  String getUserName() {
-    return userStateNotifier.value;
-  }
-
-  void setUserName(String userName) {
-    userStateNotifier.setUserName(userName);
-  }
-
-  void setDarkTheme(bool darkTheme){
+  void setDarkTheme(bool darkTheme) {
     darkThemeStateNotifier.setDarkTheme(darkTheme);
   }
 
-  bool getDarkTheme(){
+  bool getDarkTheme() {
     return darkThemeStateNotifier.value;
   }
 
