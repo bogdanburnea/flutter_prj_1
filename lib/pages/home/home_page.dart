@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/category/category_page.dart';
+import 'package:flutter_prj_1/pages/category/widgets/category_dialog.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
@@ -128,8 +129,11 @@ class _HomePageState extends State<HomePage> {
 
   void _handleAddActionButtonPressed() {
     if (_pageIndex == 2) {
-      showAboutDialog(context: context);
-      return;
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CategoryDialog();
+          });
     }
   }
 
