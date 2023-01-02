@@ -35,10 +35,6 @@ void main() {
   print(
       '[main] categoryStateManager.getCategoryList: ${categoryStateManager.getCategoryList()}');
 
-
-
-
-
   // here can go other init, for example contacting web server
 
   runApp(MyApp());

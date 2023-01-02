@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/category/category_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
+import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
+import 'package:flutter_prj_1/services/service_locator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -25,6 +27,8 @@ class _HomePageState extends State<HomePage> {
 
   int _pageIndex = 0;
   String _title = dashboard_label;
+  Color themeUnSelectedColor = Colors.blue;
+  Color themeSelectedColor = Colors.indigo;
 
   @override
   initState() {
@@ -39,52 +43,66 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     print('[HomePage] build');
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_title),
-      ),
-      body: Center(
-        child: _pageAtIndex(_pageIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedIconTheme: const IconThemeData(color: Colors.blue, size: 30),
-        unselectedItemColor: Colors.blue,
-        selectedIconTheme: const IconThemeData(color: Colors.teal, size: 40),
-        selectedItemColor: Colors.teal,
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: dashboard_label,
+    final settingsStateManager = getIt<SettingsStateManager>();
+
+    return ValueListenableBuilder<String>(
+      valueListenable: settingsStateManager.colorThemeStateNotifier,
+      builder: (context, colorTheme, child) {
+        print('[HomePage] build, colorTheme: $colorTheme');
+
+        themeUnSelectedColor = getUnSelectedColor(colorTheme);
+        themeSelectedColor = getSelectedColor(colorTheme);
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(_title),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.access_alarms_rounded),
-            label: reminders_label,
+          body: Center(
+            child: _pageAtIndex(_pageIndex),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category_rounded),
-            label: categories_label,
+          bottomNavigationBar: BottomNavigationBar(
+            unselectedIconTheme:
+                IconThemeData(color: themeUnSelectedColor, size: 30),
+            unselectedItemColor: themeUnSelectedColor,
+            selectedIconTheme:
+                IconThemeData(color: themeSelectedColor, size: 40),
+            selectedItemColor: themeSelectedColor,
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.dashboard),
+                label: dashboard_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.access_alarms_rounded),
+                label: reminders_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.category_rounded),
+                label: categories_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.library_books),
+                label: types_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: settings_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: user_profile_label,
+              ),
+            ],
+            currentIndex: _pageIndex,
+            onTap: _onItemTapped,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
-            label: types_label,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: settings_label,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: user_profile_label,
-          ),
-        ],
-        currentIndex: _pageIndex,
-        onTap: _onItemTapped,
-      ),
-      floatingActionButton: _hasFloatingAddActionButton(context)
-          ? _buildFloatingAddActionButton(context)
-          : null,
+          floatingActionButton: _hasFloatingAddActionButton(context)
+              ? _buildFloatingAddActionButton(context)
+              : null,
+        );
+      },
     );
   }
 
@@ -106,6 +124,48 @@ class _HomePageState extends State<HomePage> {
     if (_pageIndex == 2) {
       showAboutDialog(context: context);
       return;
+    }
+  }
+
+  Color getSelectedColor(String pColorTheme) {
+    switch (pColorTheme) {
+      case "red":
+        {
+          return Colors.pink;
+        }
+      case "green":
+        {
+          return Colors.teal;
+        }
+      case "blue":
+        {
+          return Colors.indigo;
+        }
+      default:
+        {
+          return Colors.indigo;
+        }
+    }
+  }
+
+  Color getUnSelectedColor(String pColorTheme) {
+    switch (pColorTheme) {
+      case "red":
+        {
+          return Colors.red;
+        }
+      case "green":
+        {
+          return Colors.green;
+        }
+      case "blue":
+        {
+          return Colors.blue;
+        }
+      default:
+        {
+          return Colors.blue;
+        }
     }
   }
 
