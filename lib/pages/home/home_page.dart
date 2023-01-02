@@ -82,7 +82,31 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _pageIndex,
         onTap: _onItemTapped,
       ),
+      floatingActionButton: _hasFloatingAddActionButton(context)
+          ? _buildFloatingAddActionButton(context)
+          : null,
     );
+  }
+
+  bool _hasFloatingAddActionButton(BuildContext context) {
+    if (_pageIndex == 2) {
+      return true;
+    }
+    return false;
+  }
+
+  FloatingActionButton _buildFloatingAddActionButton(BuildContext context) {
+    return FloatingActionButton(
+      child: const Icon(Icons.add),
+      onPressed: () => _handleAddActionButtonPressed(),
+    );
+  }
+
+  void _handleAddActionButtonPressed() {
+    if (_pageIndex == 2) {
+      showAboutDialog(context: context);
+      return;
+    }
   }
 
   void _onItemTapped(int index) {
@@ -130,12 +154,12 @@ class _HomePageState extends State<HomePage> {
 
   static Widget _pageAtIndex(int index) {
     if (index == 0) {
-      // return const DashboardPage();
+// return const DashboardPage();
       return const Center(child: Text('Dashboard page'));
     }
 
     if (index == 1) {
-      // return const EntriesPage();
+// return const EntriesPage();
       return const Center(child: Text('Reminders page'));
     }
 
