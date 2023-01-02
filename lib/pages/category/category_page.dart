@@ -15,11 +15,7 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget build(BuildContext context) {
     print('[CategoryPage] build');
     return const Scaffold(
-      body: Center(
-        child: Expanded(
-          child: CategoryWidget(),
-        ),
-      ),
+      body: CategoryWidget(),
     );
   }
 }

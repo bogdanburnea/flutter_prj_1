@@ -15,24 +15,17 @@ class CategoryWidget extends StatelessWidget {
         print('[CategoryWidget] build, categoryList: $categoryList');
 
         return Center(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                  child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: categoryList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: 50,
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    child: Text(categoryList[index]),
-                  );
-                },
-              )),
-            ],
-          ),
-        );
+            child: ListView.builder(
+          itemCount: categoryList.length,
+          itemBuilder: (context, index) {
+            return Container(
+              height: 50,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text(categoryList[index]),
+            );
+          },
+        ));
       },
     );
   }
