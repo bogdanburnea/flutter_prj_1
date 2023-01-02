@@ -1,7 +1,7 @@
-import 'package:flutter_prj_1/state/category_notifier.dart';
+import 'package:flutter_prj_1/state/category_state_notifier.dart';
 
 class CategoryStateManager {
-  final categoryNotifier = CategoryNotifier();
+  final categoryNotifier = CategoryStateNotifier();
 
   List<String> getCategoryList() {
     return categoryNotifier.value;

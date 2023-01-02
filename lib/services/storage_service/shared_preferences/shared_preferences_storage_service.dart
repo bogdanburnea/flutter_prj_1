@@ -10,4 +10,8 @@ abstract class SharedPreferencesStorageService {
   Future<List<String>?> getCategoryList();
 
   Future<void> setCategoryList(List<String> categoryList);
+
+  Future<String?> getColorTheme();
+
+  Future<void> setColorTheme(String userName);
 }
