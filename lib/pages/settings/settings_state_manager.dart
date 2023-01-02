@@ -1,3 +1,4 @@
+import 'package:flutter_prj_1/state/color_theme_state_notifier.dart';
 import 'package:flutter_prj_1/state/dark_theme_state_notifier.dart';
 
 // logic for the page, completely decoupled from UI, link to one or more notifiers
@@ -22,6 +23,16 @@ class SettingsStateManager {
 
   bool getDarkTheme() {
     return darkThemeStateNotifier.value;
+  }
+
+  final colorThemeStateNotifier = ColorThemeStateNotifier();
+
+  void setColorTheme(String colorTheme) {
+    return colorThemeStateNotifier.setColorTheme(colorTheme);
+  }
+
+  String getColorTheme() {
+    return colorThemeStateNotifier.value;
   }
 
 // The way to make these notifiers notify any listeners is by changing their value.

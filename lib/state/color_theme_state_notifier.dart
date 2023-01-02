@@ -3,7 +3,7 @@ import 'package:flutter_prj_1/services/service_locator.dart';
 import 'package:flutter_prj_1/services/storage_service/shared_preferences/shared_preferences_storage_service.dart';
 
 class ColorThemeStateNotifier extends ValueNotifier<String> {
-  static const String initialColorTheme = "red";
+  static const String initialColorTheme = "blue";
 
   // set intial value to initialColorTheme
   ColorThemeStateNotifier() : super(initialColorTheme);

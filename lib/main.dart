@@ -16,6 +16,8 @@ void main() {
 
   print(
       '[main] settingsStateManager.getDarkTheme: ${settingsStateManager.getDarkTheme()}');
+  print(
+      '[main] settingsStateManager.getColorTheme: ${settingsStateManager.getColorTheme()}');
 
   // user profile state
   final userProfileStateManager = getIt<UserProfileStateManager>();
@@ -32,6 +34,9 @@ void main() {
 
   print(
       '[main] categoryStateManager.getCategoryList: ${categoryStateManager.getCategoryList()}');
+
+
+
 
 
   // here can go other init, for example contacting web server

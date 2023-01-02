@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_prj_1/pages/settings/widgets/color_theme_widget.dart';
 import 'package:flutter_prj_1/pages/settings/widgets/dark_theme_widget.dart';
 
 // pure ui widget, so no ValueListenableBuilder wrapper
@@ -19,9 +20,17 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 60,
+              height: 55,
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: const DarkThemeWidget(),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: const Divider(color: Colors.grey),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: const ColorThemeWidget(),
             ),
           ],
         ),
