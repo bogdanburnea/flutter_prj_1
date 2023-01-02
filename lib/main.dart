@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_prj_1/pages/category/category_state_manager.dart';
 import 'package:flutter_prj_1/pages/home/home_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_state_manager.dart';
@@ -15,8 +16,6 @@ void main() {
 
   print(
       '[main] settingsStateManager.getDarkTheme: ${settingsStateManager.getDarkTheme()}');
-  print(
-      '[main] settingsStateManager.getCategoryList: ${settingsStateManager.getCategoryList()}');
 
   // user profile state
   final userProfileStateManager = getIt<UserProfileStateManager>();
@@ -28,6 +27,12 @@ void main() {
     // set the user state
     userProfileStateManager.setUserName(randomUsername);
   }
+
+  final categoryStateManager = getIt<CategoryStateManager>();
+
+  print(
+      '[main] categoryStateManager.getCategoryList: ${categoryStateManager.getCategoryList()}');
+
 
   // here can go other init, for example contacting web server
 
@@ -62,7 +67,7 @@ class MyApp extends StatelessWidget {
           ),
           themeMode: darkTheme ? ThemeMode.dark : ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          home: HomePage(title: 'Smart Reminders App - Home'),
+          home: const HomePage(title: 'Smart Reminders App - Home'),
         );
       },
     );

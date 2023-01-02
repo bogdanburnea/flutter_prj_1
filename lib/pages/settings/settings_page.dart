@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/settings/widgets/dark_theme_widget.dart';
-import 'package:flutter_prj_1/pages/settings/widgets/category_widget.dart';
 
 // pure ui widget, so no ValueListenableBuilder wrapper
 
@@ -17,46 +16,16 @@ class _SettingsPageState extends State<SettingsPage> {
     print('[SettingsPage] build');
     return Scaffold(
       body: Center(
-          child: ListView.separated(
-              itemCount: 2,
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
-              padding: const EdgeInsets.all(10),
-              itemBuilder: (BuildContext context, int index) {
-                switch (index) {
-                  case 0:
-                    {
-                      return SizedBox(
-                        height: 50,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            DarkThemeWidget(),
-                          ],
-                        ),
-                      );
-                    }
-                  case 1:
-                    {
-                      return Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            CategoryWidget(),
-                          ],
-                        ),
-                      );
-                    }
-
-                  default:
-                    {
-                      return const SizedBox(
-                        height: 50,
-                        child: Center(child: Text(' ')),
-                      );
-                    }
-                }
-              })),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 60,
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: const DarkThemeWidget(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

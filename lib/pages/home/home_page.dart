@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_prj_1/pages/category/category_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
 
@@ -17,6 +18,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static const dashboard_label = 'Dashboard';
   static const reminders_label = 'Reminders';
+  static const categories_label = 'Categories';
+  static const types_label = 'Types';
   static const settings_label = 'Settings';
   static const user_profile_label = 'User Profile';
 
@@ -29,6 +32,8 @@ class _HomePageState extends State<HomePage> {
     _title = dashboard_label;
     super.initState();
   }
+
+  // for vertical navigation see https://api.flutter.dev/flutter/material/NavigationRail-class.html
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +59,16 @@ class _HomePageState extends State<HomePage> {
             label: dashboard_label,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.access_alarms_rounded),
             label: reminders_label,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category_rounded),
+            label: categories_label,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books),
+            label: types_label,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -89,10 +102,20 @@ class _HomePageState extends State<HomePage> {
           break;
         case 2:
           {
-            _title = settings_label;
+            _title = categories_label;
           }
           break;
         case 3:
+          {
+            _title = types_label;
+          }
+          break;
+        case 4:
+          {
+            _title = settings_label;
+          }
+          break;
+        case 5:
           {
             _title = user_profile_label;
           }
@@ -117,10 +140,18 @@ class _HomePageState extends State<HomePage> {
     }
 
     if (index == 2) {
-      return const SettingsPage();
+      return const CategoryPage();
     }
 
     if (index == 3) {
+      return const Center(child: Text('Types page'));
+    }
+
+    if (index == 4) {
+      return const SettingsPage();
+    }
+
+    if (index == 5) {
       return const UserProfilePage();
     }
 
