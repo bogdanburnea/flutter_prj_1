@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
 import 'package:flutter_prj_1/services/service_locator.dart';
+import 'package:flutter_prj_1/utils/utils.dart';
 
 class ColorThemeWidget extends StatelessWidget {
   const ColorThemeWidget({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class ColorThemeWidget extends StatelessWidget {
                 title: const Text('Red'),
                 value: 'red',
                 groupValue: colorTheme,
+                activeColor: Utils.getSelectedColor(colorTheme),
                 controlAffinity: ListTileControlAffinity.trailing,
                 onChanged: (value) {
                   settingsStateManager.setColorTheme(value!);
@@ -36,6 +38,7 @@ class ColorThemeWidget extends StatelessWidget {
                 title: const Text('Green'),
                 value: 'green',
                 groupValue: colorTheme,
+                activeColor: Utils.getSelectedColor(colorTheme),
                 controlAffinity: ListTileControlAffinity.trailing,
                 onChanged: (value) {
                   settingsStateManager.setColorTheme(value!);
@@ -44,6 +47,7 @@ class ColorThemeWidget extends StatelessWidget {
                 title: const Text('Blue'),
                 value: 'blue',
                 groupValue: colorTheme,
+                activeColor: Utils.getSelectedColor(colorTheme),
                 controlAffinity: ListTileControlAffinity.trailing,
                 onChanged: (value) {
                   settingsStateManager.setColorTheme(value!);

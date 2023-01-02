@@ -4,6 +4,7 @@ import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
 import 'package:flutter_prj_1/services/service_locator.dart';
+import 'package:flutter_prj_1/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -34,6 +35,9 @@ class _HomePageState extends State<HomePage> {
   initState() {
     _pageIndex = 0;
     _title = dashboard_label;
+    themeUnSelectedColor = Colors.blue;
+    themeSelectedColor = Colors.indigo;
+
     super.initState();
   }
 
@@ -50,12 +54,13 @@ class _HomePageState extends State<HomePage> {
       builder: (context, colorTheme, child) {
         print('[HomePage] build, colorTheme: $colorTheme');
 
-        themeUnSelectedColor = getUnSelectedColor(colorTheme);
-        themeSelectedColor = getSelectedColor(colorTheme);
+        themeUnSelectedColor = Utils.getUnSelectedColor(colorTheme);
+        themeSelectedColor = Utils.getSelectedColor(colorTheme);
 
         return Scaffold(
           appBar: AppBar(
             title: Text(_title),
+            backgroundColor: themeUnSelectedColor,
           ),
           body: Center(
             child: _pageAtIndex(_pageIndex),
@@ -115,8 +120,9 @@ class _HomePageState extends State<HomePage> {
 
   FloatingActionButton _buildFloatingAddActionButton(BuildContext context) {
     return FloatingActionButton(
-      child: const Icon(Icons.add),
       onPressed: () => _handleAddActionButtonPressed(),
+      backgroundColor: themeSelectedColor,
+      child: const Icon(Icons.add),
     );
   }
 
@@ -124,48 +130,6 @@ class _HomePageState extends State<HomePage> {
     if (_pageIndex == 2) {
       showAboutDialog(context: context);
       return;
-    }
-  }
-
-  Color getSelectedColor(String pColorTheme) {
-    switch (pColorTheme) {
-      case "red":
-        {
-          return Colors.pink;
-        }
-      case "green":
-        {
-          return Colors.teal;
-        }
-      case "blue":
-        {
-          return Colors.indigo;
-        }
-      default:
-        {
-          return Colors.indigo;
-        }
-    }
-  }
-
-  Color getUnSelectedColor(String pColorTheme) {
-    switch (pColorTheme) {
-      case "red":
-        {
-          return Colors.red;
-        }
-      case "green":
-        {
-          return Colors.green;
-        }
-      case "blue":
-        {
-          return Colors.blue;
-        }
-      default:
-        {
-          return Colors.blue;
-        }
     }
   }
 
