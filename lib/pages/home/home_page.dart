@@ -4,6 +4,7 @@ import 'package:flutter_prj_1/pages/category/widgets/category_dialog.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
 import 'package:flutter_prj_1/pages/type/type_page.dart';
+import 'package:flutter_prj_1/pages/type/type_state_manager.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
 import 'package:flutter_prj_1/services/service_locator.dart';
 import 'package:flutter_prj_1/utils/utils.dart';
@@ -50,71 +51,79 @@ class _HomePageState extends State<HomePage> {
     print('[HomePage] build');
 
     final settingsStateManager = getIt<SettingsStateManager>();
+    final typeStateManager = getIt<TypeStateManager>();
 
-    return ValueListenableBuilder<String>(
-      valueListenable: settingsStateManager.colorThemeStateNotifier,
-      builder: (context, colorTheme, child) {
-        print('[HomePage] build, colorTheme: $colorTheme');
+    return ValueListenableBuilder<List<String>>(
+      valueListenable: typeStateManager.typeStateNotifier,
+      builder: (context, typeList, child) {
+        print('[HomePage] build, typeList: $typeList');
 
-        themeUnSelectedColor = Utils.getUnSelectedColor(colorTheme);
-        themeSelectedColor = Utils.getSelectedColor(colorTheme);
+        return ValueListenableBuilder<String>(
+          valueListenable: settingsStateManager.colorThemeStateNotifier,
+          builder: (context, colorTheme, child) {
+            print('[HomePage] build, colorTheme: $colorTheme');
 
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(_title),
-            backgroundColor: themeUnSelectedColor,
-          ),
-          body: Center(
-            child: _pageAtIndex(_pageIndex),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            unselectedIconTheme:
-                IconThemeData(color: themeUnSelectedColor, size: 30),
-            unselectedItemColor: themeUnSelectedColor,
-            selectedIconTheme:
-                IconThemeData(color: themeSelectedColor, size: 40),
-            selectedItemColor: themeSelectedColor,
-            showSelectedLabels: true,
-            showUnselectedLabels: false,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard),
-                label: dashboard_label,
+            themeUnSelectedColor = Utils.getUnSelectedColor(colorTheme);
+            themeSelectedColor = Utils.getSelectedColor(colorTheme);
+
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(_title),
+                backgroundColor: themeUnSelectedColor,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.access_alarms_rounded),
-                label: reminders_label,
+              body: Center(
+                child: _pageAtIndex(_pageIndex),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.category_rounded),
-                label: categories_label,
+              bottomNavigationBar: BottomNavigationBar(
+                unselectedIconTheme:
+                    IconThemeData(color: themeUnSelectedColor, size: 30),
+                unselectedItemColor: themeUnSelectedColor,
+                selectedIconTheme:
+                    IconThemeData(color: themeSelectedColor, size: 40),
+                selectedItemColor: themeSelectedColor,
+                showSelectedLabels: true,
+                showUnselectedLabels: false,
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.dashboard),
+                    label: dashboard_label,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.access_alarms_rounded),
+                    label: reminders_label,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.category_rounded),
+                    label: categories_label,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.library_books),
+                    label: types_label,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: settings_label,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.account_circle),
+                    label: user_profile_label,
+                  ),
+                ],
+                currentIndex: _pageIndex,
+                onTap: _onItemTapped,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.library_books),
-                label: types_label,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: settings_label,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle),
-                label: user_profile_label,
-              ),
-            ],
-            currentIndex: _pageIndex,
-            onTap: _onItemTapped,
-          ),
-          floatingActionButton: _hasFloatingAddActionButton(context)
-              ? _buildFloatingAddActionButton(context)
-              : null,
+              floatingActionButton: _hasFloatingAddActionButton(context)
+                  ? _buildFloatingAddActionButton(context)
+                  : null,
+            );
+          },
         );
       },
     );
   }
 
   bool _hasFloatingAddActionButton(BuildContext context) {
-    if (_pageIndex == 2) {
+    if (_pageIndex == 2 || _pageIndex == 3) {
       return true;
     }
     return false;
@@ -182,6 +191,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   static Widget _pageAtIndex(int index) {
+    final typeStateManager = getIt<TypeStateManager>();
+    List<String> typeList = typeStateManager.getTypeList();
+
     if (index == 0) {
 // return const DashboardPage();
       return const Center(child: Text('Dashboard page'));
@@ -197,7 +209,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     if (index == 3) {
-      return const TypePage();
+      return TypePage(items: typeList);
     }
 
     if (index == 4) {

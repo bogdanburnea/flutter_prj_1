@@ -1,5 +1,6 @@
 import 'package:flutter_prj_1/pages/category/category_state_manager.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
+import 'package:flutter_prj_1/pages/type/type_state_manager.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_state_manager.dart';
 import 'package:flutter_prj_1/services/storage_service/shared_preferences/shared_preferences_storage.dart';
 import 'package:flutter_prj_1/services/storage_service/shared_preferences/shared_preferences_storage_service.dart';
@@ -19,6 +20,9 @@ void setupGetIt() {
 
   // state management layer
   getIt.registerLazySingleton<CategoryStateManager>(() => CategoryStateManager());
+
+  // state management layer
+  getIt.registerLazySingleton<TypeStateManager>(() => TypeStateManager());
 
   // shared preferences storage
   getIt.registerLazySingleton<SharedPreferencesStorageService>(() => SharedPreferencesStorage());
