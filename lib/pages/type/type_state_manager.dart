@@ -10,5 +10,9 @@ class TypeStateManager {
   void setTypeList(List<String> typeList) {
     typeStateNotifier.setTypeList(typeList);
   }
-}
 
+  void deleteTypeFromTypeList(String type) {
+    print('[TypeStateManager] deleteTypeFromTypeList.type: ${type}');
+    typeStateNotifier.deleteTypeFromTypeList(type);
+  }
+}

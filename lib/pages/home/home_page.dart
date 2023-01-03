@@ -194,32 +194,21 @@ class _HomePageState extends State<HomePage> {
     final typeStateManager = getIt<TypeStateManager>();
     List<String> typeList = typeStateManager.getTypeList();
 
-    if (index == 0) {
-// return const DashboardPage();
-      return const Center(child: Text('Dashboard page'));
+    switch (index) {
+      case 0:
+        return const Center(child: Text('Dashboard page'));
+      case 1:
+        return const Center(child: Text('Reminders page'));
+      case 2:
+        return const CategoryPage();
+      case 3:
+        return TypePage(items: typeList);
+      case 4:
+        return const SettingsPage();
+      case 5:
+        return const UserProfilePage();
+      default:
+        return const Center(child: Text('Dashboard page'));
     }
-
-    if (index == 1) {
-// return const EntriesPage();
-      return const Center(child: Text('Reminders page'));
-    }
-
-    if (index == 2) {
-      return const CategoryPage();
-    }
-
-    if (index == 3) {
-      return TypePage(items: typeList);
-    }
-
-    if (index == 4) {
-      return const SettingsPage();
-    }
-
-    if (index == 5) {
-      return const UserProfilePage();
-    }
-
-    return const Center(child: Text('Dashboard page'));
   }
 }

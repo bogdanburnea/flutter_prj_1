@@ -32,6 +32,27 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
   }
 
   void setTypeList(List<String> typeList) {
+    value = typeList;
     sharedPreferencesStorageService.setTypeList(typeList);
+  }
+
+  void deleteTypeFromTypeList(String type) {
+    print('[TypeStateNotifier] deleteTypeFromTypeList.type: $type');
+
+    List<String>? typeList = value;
+    print('[TypeStateNotifier] deleteTypeFromTypeList.typeList: $typeList');
+
+    List<String> newTypeList = [];
+
+    typeList.forEach((element) {
+      if (element != type) {
+        newTypeList.add(element);
+      }
+    });
+
+    print(
+        '[TypeStateNotifier] deleteTypeFromTypeList.newTypeList after delete: ${newTypeList}');
+
+    setTypeList(newTypeList);
   }
 }
