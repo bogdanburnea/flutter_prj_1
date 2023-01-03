@@ -71,7 +71,7 @@ class _TypePageState extends State<TypePage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: IconButton(
-                    icon: const Icon(Icons.library_books),
+                    icon: const Icon(Icons.category_outlined),
                     onPressed: () {},
                   ),
                   title: Text('${widget.items[index]}'),

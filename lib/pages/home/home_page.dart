@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     label: categories_label,
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.library_books),
+                    icon: Icon(Icons.category_outlined),
                     label: types_label,
                   ),
                   BottomNavigationBarItem(

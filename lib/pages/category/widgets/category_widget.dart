@@ -18,11 +18,22 @@ class CategoryWidget extends StatelessWidget {
             child: ListView.builder(
           itemCount: categoryList.length,
           itemBuilder: (context, index) {
-            return Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Text(categoryList[index]),
+            return ListTile(
+              leading: IconButton(
+                icon: const Icon(Icons.category_rounded),
+                onPressed: () {},
+              ),
+              title: Text(categoryList[index]),
+              trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () async {},
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {},
+                ),
+              ]),
             );
           },
         ));
