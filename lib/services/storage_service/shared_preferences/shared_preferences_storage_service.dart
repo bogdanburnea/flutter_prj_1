@@ -14,4 +14,8 @@ abstract class SharedPreferencesStorageService {
   Future<String?> getColorTheme();
 
   Future<void> setColorTheme(String userName);
+
+  Future<List<String>?> getTypeList();
+
+  Future<void> setTypeList(List<String> typeList);
 }

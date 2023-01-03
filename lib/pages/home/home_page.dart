@@ -3,6 +3,7 @@ import 'package:flutter_prj_1/pages/category/category_page.dart';
 import 'package:flutter_prj_1/pages/category/widgets/category_dialog.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
+import 'package:flutter_prj_1/pages/type/type_page.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
 import 'package:flutter_prj_1/services/service_locator.dart';
 import 'package:flutter_prj_1/utils/utils.dart';
@@ -196,7 +197,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     if (index == 3) {
-      return const Center(child: Text('Types page'));
+      return const TypePage();
     }
 
     if (index == 4) {
