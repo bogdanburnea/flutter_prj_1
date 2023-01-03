@@ -1,5 +1,5 @@
-import 'package:flutter_prj_1/state_notifiers/color_theme_state_notifier.dart';
-import 'package:flutter_prj_1/state_notifiers/dark_theme_state_notifier.dart';
+import 'package:flutter_prj_1/state/notifiers/color_theme_state_notifier.dart';
+import 'package:flutter_prj_1/state/notifiers/dark_theme_state_notifier.dart';
 
 // logic for the page, completely decoupled from UI, link to one or more notifiers
 // The job of the page’s state management class is to manage the notifiers

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_prj_1/pages/type/type_state_manager.dart';
-import 'package:flutter_prj_1/services/service_locator.dart';
+import 'package:flutter_prj_1/state/managers/type_state_manager.dart';
+import 'package:flutter_prj_1/state/services/service_locator.dart';
 
 Future<String?> asyncTypeEditDialog(
     BuildContext context, String editedType) async {

@@ -1,4 +1,4 @@
-import 'package:flutter_prj_1/state_notifiers/type_state_notifier.dart';
+import 'package:flutter_prj_1/state/notifiers/type_state_notifier.dart';
 
 class TypeStateManager {
   final typeStateNotifier = TypeStateNotifier();

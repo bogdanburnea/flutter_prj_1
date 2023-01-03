@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
-import 'package:flutter_prj_1/services/service_locator.dart';
+import 'package:flutter_prj_1/state/managers/settings_state_manager.dart';
+import 'package:flutter_prj_1/state/services/service_locator.dart';
 import 'package:flutter_prj_1/utils/utils.dart';
 
 class ColorThemeWidget extends StatelessWidget {

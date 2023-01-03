@@ -1,4 +1,4 @@
-import 'package:flutter_prj_1/state_notifiers/user_state_notifier.dart';
+import 'package:flutter_prj_1/state/notifiers/user_state_notifier.dart';
 
 class UserProfileStateManager {
 
