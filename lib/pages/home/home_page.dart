@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/category/category_page.dart';
 import 'package:flutter_prj_1/pages/category/widgets/category_dialog.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
-import 'package:flutter_prj_1/state/managers/settings_state_manager.dart';
 import 'package:flutter_prj_1/pages/type/type_page.dart';
-import 'package:flutter_prj_1/state/managers/type_state_manager.dart';
 import 'package:flutter_prj_1/pages/type/widgets/type_add_dialog.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
+import 'package:flutter_prj_1/state/managers/settings_state_manager.dart';
+import 'package:flutter_prj_1/state/managers/type_state_manager.dart';
 import 'package:flutter_prj_1/state/services/service_locator.dart';
 import 'package:flutter_prj_1/utils/utils.dart';
 
@@ -71,6 +71,22 @@ class _HomePageState extends State<HomePage> {
               appBar: AppBar(
                 title: Text(_title),
                 backgroundColor: themeUnSelectedColor,
+                actions: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: _hasAddButton(context)
+                        ? GestureDetector(
+                            onTap: () {
+                              _handleAddActionButtonPressed();
+                            },
+                            child: const Icon(
+                              Icons.add,
+                              size: 26.0,
+                            ),
+                          )
+                        : null,
+                  ),
+                ],
               ),
               body: Center(
                 child: _pageAtIndex(_pageIndex),
@@ -113,9 +129,6 @@ class _HomePageState extends State<HomePage> {
                 currentIndex: _pageIndex,
                 onTap: _onItemTapped,
               ),
-              floatingActionButton: _hasFloatingAddActionButton(context)
-                  ? _buildFloatingAddActionButton(context)
-                  : null,
             );
           },
         );
@@ -123,19 +136,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  bool _hasFloatingAddActionButton(BuildContext context) {
+  bool _hasAddButton(BuildContext context) {
     if (_pageIndex == 2 || _pageIndex == 3) {
       return true;
     }
     return false;
-  }
-
-  FloatingActionButton _buildFloatingAddActionButton(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () => _handleAddActionButtonPressed(),
-      backgroundColor: themeSelectedColor,
-      child: const Icon(Icons.add),
-    );
   }
 
   void _handleAddActionButtonPressed() {
@@ -143,13 +148,12 @@ class _HomePageState extends State<HomePage> {
       showDialog(
           context: context,
           builder: (BuildContext context) {
-            return CategoryDialog();
+            return const CategoryDialog();
           });
     }
     if (_pageIndex == 3) {
       asyncTypeAddDialog(context);
     }
-
   }
 
   void _onItemTapped(int index) {
