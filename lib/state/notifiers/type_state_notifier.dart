@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/state/services/service_locator.dart';
 import 'package:flutter_prj_1/state/services/storage_service/shared_preferences/shared_preferences_storage_service.dart';
-import 'package:sorted_list/sorted_list.dart';
 
 class TypeStateNotifier extends ValueNotifier<List<String>> {
   static final List<String> initialTypeList = [
+    "Anniversary",
     "Assurance",
+    "Credit",
+    "Electricity",
+    "Gas",
+    "Health",
+    "Internet",
+    "Maintenance",
+    "Mortgage",
+    "Phone",
     "Rent",
     "Tax",
-    "Anniversary",
-    "Mortgage",
-    "Maintenance",
-    "Credit",
-    "Utilities",
-    "Phone",
-    "Gas",
-    "Electricity",
     "TV",
-    "Internet",
-    "Health"
+    "Utilities",
   ];
 
   // set intial value
@@ -29,10 +28,17 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
       getIt<SharedPreferencesStorageService>();
 
   List<String> getTypeList() {
-    return value;
+    List<String>? typeList = value;
+    typeList.sort((a, b) {
+      return a.toLowerCase().compareTo(b.toLowerCase());
+    });
+    return typeList;
   }
 
   void setTypeList(List<String> typeList) {
+    typeList.sort((a, b) {
+      return a.toLowerCase().compareTo(b.toLowerCase());
+    });
     value = typeList;
     sharedPreferencesStorageService.setTypeList(typeList);
   }
