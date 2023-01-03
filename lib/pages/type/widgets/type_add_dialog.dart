@@ -5,8 +5,6 @@ import 'package:flutter_prj_1/state/services/service_locator.dart';
 Future<String?> asyncTypeAddDialog(BuildContext context) async {
   String newType = '';
 
-  final typeStateManager = getIt<TypeStateManager>();
-
   return showDialog<String>(
     context: context,
     barrierDismissible:
@@ -30,8 +28,7 @@ Future<String?> asyncTypeAddDialog(BuildContext context) async {
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
-                typeStateManager.addTypeToTypeList(newType);
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(newType);
               },
               child: const Text('OK'),
             ),
