@@ -1,4 +1,4 @@
-import 'package:flutter_prj_1/state/type_state_notifier.dart';
+import 'package:flutter_prj_1/state_notifiers/type_state_notifier.dart';
 
 class TypeStateManager {
   final typeStateNotifier = TypeStateNotifier();
@@ -14,5 +14,10 @@ class TypeStateManager {
   void deleteTypeFromTypeList(String type) {
     print('[TypeStateManager] deleteTypeFromTypeList.type: ${type}');
     typeStateNotifier.deleteTypeFromTypeList(type);
+  }
+
+  void addTypeToTypeList(String type) {
+    print('[TypeStateManager] addTypeToTypeList.type: ${type}');
+    typeStateNotifier.addTypeToTypeList(type);
   }
 }

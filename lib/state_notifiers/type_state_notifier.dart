@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/services/service_locator.dart';
 import 'package:flutter_prj_1/services/storage_service/shared_preferences/shared_preferences_storage_service.dart';
+import 'package:sorted_list/sorted_list.dart';
 
 class TypeStateNotifier extends ValueNotifier<List<String>> {
-  static const List<String> initialTypeList = [
+  static final List<String> initialTypeList = [
     "Assurance",
     "Rent",
     "Tax",
@@ -37,11 +38,7 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
   }
 
   void deleteTypeFromTypeList(String type) {
-    print('[TypeStateNotifier] deleteTypeFromTypeList.type: $type');
-
     List<String>? typeList = value;
-    print('[TypeStateNotifier] deleteTypeFromTypeList.typeList: $typeList');
-
     List<String> newTypeList = [];
 
     typeList.forEach((element) {
@@ -49,10 +46,12 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
         newTypeList.add(element);
       }
     });
-
-    print(
-        '[TypeStateNotifier] deleteTypeFromTypeList.newTypeList after delete: ${newTypeList}');
-
     setTypeList(newTypeList);
+  }
+
+  void addTypeToTypeList(String type) {
+    List<String>? typeList = value;
+    typeList.add(type);
+    setTypeList(typeList);
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/settings/settings_state_manager.dart';
 import 'package:flutter_prj_1/pages/type/type_page.dart';
 import 'package:flutter_prj_1/pages/type/type_state_manager.dart';
+import 'package:flutter_prj_1/pages/type/widgets/type_add_dialog.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
 import 'package:flutter_prj_1/services/service_locator.dart';
 import 'package:flutter_prj_1/utils/utils.dart';
@@ -145,6 +146,10 @@ class _HomePageState extends State<HomePage> {
             return CategoryDialog();
           });
     }
+    if (_pageIndex == 3) {
+      asyncTypeAddDialog(context);
+    }
+
   }
 
   void _onItemTapped(int index) {
