@@ -3,6 +3,7 @@ import 'package:flutter_prj_1/state/services/service_locator.dart';
 import 'package:flutter_prj_1/state/services/storage_service/shared_preferences/shared_preferences_storage_service.dart';
 
 class TypeStateNotifier extends ValueNotifier<List<String>> {
+
   static final List<String> initialTypeList = [
     "Anniversary",
     "Assurance",
@@ -28,19 +29,17 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
       getIt<SharedPreferencesStorageService>();
 
   List<String> getTypeList() {
-    List<String>? typeList = value;
-    typeList.sort((a, b) {
-      return a.toLowerCase().compareTo(b.toLowerCase());
-    });
-    return typeList;
+    return value;
   }
 
   void setTypeList(List<String> typeList) {
-    typeList.sort((a, b) {
+    List<String> newTypeList = typeList;
+
+    newTypeList.sort((a, b) {
       return a.toLowerCase().compareTo(b.toLowerCase());
     });
-    value = typeList;
-    sharedPreferencesStorageService.setTypeList(typeList);
+    value = newTypeList;
+    sharedPreferencesStorageService.setTypeList(newTypeList);
   }
 
   void deleteTypeFromTypeList(String type) {
@@ -56,7 +55,7 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
   }
 
   void addTypeToTypeList(String type) {
-    List<String>? typeList = value;
+    List<String> typeList = value;
     typeList.add(type);
     setTypeList(typeList);
   }

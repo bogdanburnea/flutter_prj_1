@@ -52,172 +52,168 @@ class _HomePageState extends State<HomePage> {
     print('[HomePage] build');
 
     final settingsStateManager = getIt<SettingsStateManager>();
-    final typeStateManager = getIt<TypeStateManager>();
 
-    return ValueListenableBuilder<List<String>>(
-      valueListenable: typeStateManager.typeStateNotifier,
-      builder: (context, typeList, child) {
-        print('[HomePage] build, typeList: $typeList');
+    return ValueListenableBuilder<String>(
+      valueListenable: settingsStateManager.colorThemeStateNotifier,
+      builder: (context, colorTheme, child) {
+        print('[HomePage] build, colorTheme: $colorTheme');
 
-        return ValueListenableBuilder<String>(
-          valueListenable: settingsStateManager.colorThemeStateNotifier,
-          builder: (context, colorTheme, child) {
-            print('[HomePage] build, colorTheme: $colorTheme');
+        themeUnSelectedColor = Utils.getUnSelectedColor(colorTheme);
+        themeSelectedColor = Utils.getSelectedColor(colorTheme);
 
-            themeUnSelectedColor = Utils.getUnSelectedColor(colorTheme);
-            themeSelectedColor = Utils.getSelectedColor(colorTheme);
-
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(_title),
-                backgroundColor: themeUnSelectedColor,
-                actions: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: _hasAddButton(context)
-                        ? GestureDetector(
-                            onTap: () {
-                              _handleAddActionButtonPressed();
-                            },
-                            child: const Icon(
-                              Icons.add,
-                              size: 26.0,
-                            ),
-                          )
-                        : null,
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(_title),
+            backgroundColor: themeUnSelectedColor,
+            actions: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: _hasAddButton(context)
+                    ? GestureDetector(
+                  onTap: () {
+                    _handleAddActionButtonPressed();
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 26.0,
                   ),
-                ],
+                )
+                    : null,
               ),
-              body: Center(
-                child: _pageAtIndex(_pageIndex),
+            ],
+          ),
+          body: Center(
+            child: _pageAtIndex(_pageIndex),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            unselectedIconTheme:
+            IconThemeData(color: themeUnSelectedColor, size: 30),
+            unselectedItemColor: themeUnSelectedColor,
+            selectedIconTheme:
+            IconThemeData(color: themeSelectedColor, size: 40),
+            selectedItemColor: themeSelectedColor,
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.dashboard),
+                label: dashboard_label,
               ),
-              bottomNavigationBar: BottomNavigationBar(
-                unselectedIconTheme:
-                    IconThemeData(color: themeUnSelectedColor, size: 30),
-                unselectedItemColor: themeUnSelectedColor,
-                selectedIconTheme:
-                    IconThemeData(color: themeSelectedColor, size: 40),
-                selectedItemColor: themeSelectedColor,
-                showSelectedLabels: true,
-                showUnselectedLabels: false,
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.dashboard),
-                    label: dashboard_label,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.access_alarms_rounded),
-                    label: reminders_label,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.category_rounded),
-                    label: categories_label,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.category_outlined),
-                    label: types_label,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: settings_label,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_circle),
-                    label: user_profile_label,
-                  ),
-                ],
-                currentIndex: _pageIndex,
-                onTap: _onItemTapped,
+              BottomNavigationBarItem(
+                icon: Icon(Icons.access_alarms_rounded),
+                label: reminders_label,
               ),
-            );
-          },
+              BottomNavigationBarItem(
+                icon: Icon(Icons.category_rounded),
+                label: categories_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.category_outlined),
+                label: types_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: settings_label,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: user_profile_label,
+              ),
+            ],
+            currentIndex: _pageIndex,
+            onTap: _onItemTapped,
+          ),
         );
       },
     );
   }
 
-  bool _hasAddButton(BuildContext context) {
-    if (_pageIndex == 2 || _pageIndex == 3) {
-      return true;
-    }
-    return false;
+bool _hasAddButton(BuildContext context) {
+  if (_pageIndex == 2 || _pageIndex == 3) {
+    return true;
   }
+  return false;
+}
 
-  void _handleAddActionButtonPressed() {
-    if (_pageIndex == 2) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return const CategoryDialog();
-          });
-    }
-    if (_pageIndex == 3) {
-      asyncTypeAddDialog(context);
-    }
+void _handleAddActionButtonPressed() {
+  if (_pageIndex == 2) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const CategoryDialog();
+        });
   }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _pageIndex = index;
-
-      switch (index) {
-        case 0:
-          {
-            _title = dashboard_label;
-          }
-          break;
-        case 1:
-          {
-            _title = reminders_label;
-          }
-          break;
-        case 2:
-          {
-            _title = categories_label;
-          }
-          break;
-        case 3:
-          {
-            _title = types_label;
-          }
-          break;
-        case 4:
-          {
-            _title = settings_label;
-          }
-          break;
-        case 5:
-          {
-            _title = user_profile_label;
-          }
-          break;
-        default:
-          {
-            _title = dashboard_label;
-          }
-      }
-    });
+  if (_pageIndex == 3) {
+    asyncTypeAddDialog(context);
   }
+}
 
-  static Widget _pageAtIndex(int index) {
-    final typeStateManager = getIt<TypeStateManager>();
-    List<String> typeList = typeStateManager.getTypeList();
+void _onItemTapped(int index) {
+  setState(() {
+    _pageIndex = index;
 
     switch (index) {
       case 0:
-        return const Center(child: Text('Dashboard page'));
+        {
+          _title = dashboard_label;
+        }
+        break;
       case 1:
-        return const Center(child: Text('Reminders page'));
+        {
+          _title = reminders_label;
+        }
+        break;
       case 2:
-        return const CategoryPage();
+        {
+          _title = categories_label;
+        }
+        break;
       case 3:
-        return TypePage(items: typeList);
+        {
+          _title = types_label;
+        }
+        break;
       case 4:
-        return const SettingsPage();
+        {
+          _title = settings_label;
+        }
+        break;
       case 5:
-        return const UserProfilePage();
+        {
+          _title = user_profile_label;
+        }
+        break;
       default:
-        return const Center(child: Text('Dashboard page'));
+        {
+          _title = dashboard_label;
+        }
     }
-  }
+  });
+}
+
+static Widget _pageAtIndex
+(
+
+int index
+) {
+final typeStateManager = getIt<TypeStateManager>();
+List<String> typeList = typeStateManager.getTypeList();
+
+switch (index) {
+case 0:
+return const Center(child: Text('Dashboard page'));
+case 1:
+return const Center(child: Text('Reminders page'));
+case 2:
+return const CategoryPage();
+case 3:
+return const TypePage();
+case 4:
+return const SettingsPage();
+case 5:
+return const UserProfilePage();
+default:
+return const Center(child: Text('Dashboard page'));
+}
+}
 }
