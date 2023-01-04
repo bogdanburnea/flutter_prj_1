@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/state/services/service_locator.dart';
 import 'package:flutter_prj_1/state/services/storage_service/shared_preferences/shared_preferences_storage_service.dart';
+import 'package:flutter_prj_1/utils/utils.dart';
 
 class TypeStateNotifier extends ValueNotifier<List<String>> {
-  static const List<String> initialTypeList = [
-    "Anniversary",
-    "Assurance",
-    "Credit",
-    "Electricity",
-    "Gas",
-    "Health",
-    "Internet",
-    "Maintenance",
-    "Mortgage",
-    "Phone",
-    "Rent",
-    "Tax",
-    "TV",
-    "Utilities",
-  ];
-
   // set intial value
-  TypeStateNotifier() : super(initialTypeList);
+  TypeStateNotifier() : super(Utils.initialTypeList);
 
   // get the reference to SharedPreferencesStorageService, singleton
   final sharedPreferencesStorageService =
