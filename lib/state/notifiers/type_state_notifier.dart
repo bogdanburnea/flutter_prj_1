@@ -16,7 +16,8 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
   }
 
   void setTypeList(List<String> typeList) {
-    List<String> newTypeList = List.from(typeList);
+    // Set.from.list ensures that list elements are unique
+    List<String> newTypeList = List.from(Set.from(typeList));
 
     newTypeList.sort((a, b) {
       return a.toLowerCase().compareTo(b.toLowerCase());
