@@ -27,7 +27,7 @@ Future<void> showCategoryDeleteDialog(
                 categoryStateManager.deleteCategory(deletedCategory);
                 Navigator.of(context).pop();
               },
-              child: const Text('OK'),
+              child: const Text('Submit'),
             ),
             ElevatedButton(
               onPressed: () {

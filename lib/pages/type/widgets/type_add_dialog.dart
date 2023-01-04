@@ -30,7 +30,7 @@ Future<String?> asyncTypeAddDialog(BuildContext context) async {
               onPressed: () {
                 Navigator.of(context).pop(newType);
               },
-              child: const Text('OK'),
+              child: const Text('Submit'),
             ),
             ElevatedButton(
               onPressed: () {

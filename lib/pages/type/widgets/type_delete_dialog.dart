@@ -26,7 +26,7 @@ Future<void> showTypeDeleteDialog(
                 typeStateManager.deleteType(deletedType);
                 Navigator.of(context).pop();
               },
-              child: const Text('OK'),
+              child: const Text('Submit'),
             ),
             ElevatedButton(
               onPressed: () {

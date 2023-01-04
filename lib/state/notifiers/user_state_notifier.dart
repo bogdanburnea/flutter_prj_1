@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/state/services/service_locator.dart';
 import 'package:flutter_prj_1/state/services/storage_service/shared_preferences/shared_preferences_storage_service.dart';
-import 'package:flutter_prj_1/utils/start_constants.dart';
+import 'package:flutter_prj_1/utils/constants.dart';
 
 // The value variable belongs to ValueNotifier and anytime value changes,
 // any object that is listening to this ValueNotifier will get notified about the new value.
@@ -11,7 +11,7 @@ import 'package:flutter_prj_1/utils/start_constants.dart';
 // The more you can isolate statemanagement into small, discrete blocks, the easier your job will be
 class UserStateNotifier extends ValueNotifier<String> {
   // set intial value to intialUserName
-  UserStateNotifier() : super(StartConstants.initialUserName);
+  UserStateNotifier() : super(Constants.initialUserName);
 
   // get the reference to SharedPreferencesStorageService, singleton
   final sharedPreferencesStorageService =

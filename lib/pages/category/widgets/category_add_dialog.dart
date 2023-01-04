@@ -27,7 +27,7 @@ Future<String?> asyncCategoryAddDialog(BuildContext context) async {
               onPressed: () {
                 Navigator.of(context).pop(newCategory);
               },
-              child: const Text('OK'),
+              child: const Text('Submit'),
             ),
             ElevatedButton(
               onPressed: () {

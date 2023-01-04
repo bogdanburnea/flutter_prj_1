@@ -34,7 +34,7 @@ Future<String?> asyncTypeEditDialog(
                 typeStateManager.addType(newType);
                 Navigator.of(context).pop(newType);
               },
-              child: const Text('OK'),
+              child: const Text('Submit'),
             ),
             ElevatedButton(
               onPressed: () {

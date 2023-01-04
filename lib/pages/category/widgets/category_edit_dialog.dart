@@ -34,7 +34,7 @@ Future<String?> asyncCategoryEditDialog(
                 categoryStateManager.addCategory(newCategory);
                 Navigator.of(context).pop(newCategory);
               },
-              child: const Text('OK'),
+              child: const Text('Submit'),
             ),
             ElevatedButton(
               onPressed: () {
