@@ -11,11 +11,11 @@ class CategoryStateManager {
     categoryStateNotifier.setCategoryList(categoryList);
   }
 
-  void deleteCategoryFromCategoryList(String category) {
-    categoryStateNotifier.deleteCategoryFromCategoryList(category);
+  void deleteCategory(String category) {
+    categoryStateNotifier.deleteCategory(category);
   }
 
-  void addCategoryToCategoryList(String category) {
-    categoryStateNotifier.addCategoryToCategoryList(category);
+  void addCategory(String category) {
+    categoryStateNotifier.addCategory(category);
   }
 }

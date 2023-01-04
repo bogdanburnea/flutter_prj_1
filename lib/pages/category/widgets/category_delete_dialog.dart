@@ -24,7 +24,7 @@ Future<void> showCategoryDeleteDialog(
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
-                categoryStateManager.deleteCategoryFromCategoryList(deletedCategory);
+                categoryStateManager.deleteCategory(deletedCategory);
                 Navigator.of(context).pop();
               },
               child: const Text('OK'),

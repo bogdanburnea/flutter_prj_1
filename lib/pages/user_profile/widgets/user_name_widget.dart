@@ -13,18 +13,19 @@ class UserNameWidget extends StatelessWidget {
       valueListenable: userProfileStateManager.userStateNotifier,
       builder: (context, userName, child) {
         print('[UserNameTextWidget] build, userName: $userName');
+
         return Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
                   Text('User Name'),
                 ],
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(userName),
                 ],

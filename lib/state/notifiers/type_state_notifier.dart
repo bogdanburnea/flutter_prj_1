@@ -27,7 +27,7 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
     sharedPreferencesStorageService.setTypeList(newTypeList);
   }
 
-  void deleteTypeFromTypeList(String type) {
+  void deleteType(String type) {
     List<String>? typeList = value;
     List<String> newTypeList = [];
 
@@ -39,7 +39,7 @@ class TypeStateNotifier extends ValueNotifier<List<String>> {
     setTypeList(newTypeList);
   }
 
-  void addTypeToTypeList(String type) {
+  void addType(String type) {
     setTypeList(List.from(value)..add(type));
   }
 }

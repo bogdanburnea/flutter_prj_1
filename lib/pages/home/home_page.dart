@@ -161,12 +161,12 @@ class _HomePageState extends State<HomePage> {
     if (_pageIndex == 2) {
       asyncCategoryAddDialog(context).then((value) => {
             if (value != null)
-              {categoryStateManager.addCategoryToCategoryList(value)}
+              {categoryStateManager.addCategory(value)}
           });
     }
     if (_pageIndex == 3) {
       asyncTypeAddDialog(context).then((value) => {
-            if (value != null) {typeStateManager.addTypeToTypeList(value)}
+            if (value != null) {typeStateManager.addType(value)}
           });
     }
   }

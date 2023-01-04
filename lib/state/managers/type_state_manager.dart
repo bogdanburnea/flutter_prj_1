@@ -11,13 +11,11 @@ class TypeStateManager {
     typeStateNotifier.setTypeList(typeList);
   }
 
-  void deleteTypeFromTypeList(String type) {
-    // print('[TypeStateManager] deleteTypeFromTypeList.type: ${type}');
-    typeStateNotifier.deleteTypeFromTypeList(type);
+  void deleteType(String type) {
+    typeStateNotifier.deleteType(type);
   }
 
-  void addTypeToTypeList(String type) {
-    // print('[TypeStateManager] addTypeToTypeList.type: ${type}');
-    typeStateNotifier.addTypeToTypeList(type);
+  void addType(String type) {
+    typeStateNotifier.addType(type);
   }
 }

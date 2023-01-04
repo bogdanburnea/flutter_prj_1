@@ -30,8 +30,8 @@ Future<String?> asyncTypeEditDialog(
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
-                typeStateManager.deleteTypeFromTypeList(editedType);
-                typeStateManager.addTypeToTypeList(newType);
+                typeStateManager.deleteType(editedType);
+                typeStateManager.addType(newType);
                 Navigator.of(context).pop(newType);
               },
               child: const Text('OK'),

@@ -30,8 +30,8 @@ Future<String?> asyncCategoryEditDialog(
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
-                categoryStateManager.deleteCategoryFromCategoryList(editedCategory);
-                categoryStateManager.addCategoryToCategoryList(newCategory);
+                categoryStateManager.deleteCategory(editedCategory);
+                categoryStateManager.addCategory(newCategory);
                 Navigator.of(context).pop(newCategory);
               },
               child: const Text('OK'),

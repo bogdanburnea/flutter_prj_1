@@ -27,7 +27,7 @@ class CategoryStateNotifier extends ValueNotifier<List<String>> {
     sharedPreferencesStorageService.setCategoryList(categoryList);
   }
 
-  void deleteCategoryFromCategoryList(String category) {
+  void deleteCategory(String category) {
     List<String>? categoryList = value;
     List<String> newCategoryList = [];
 
@@ -39,7 +39,7 @@ class CategoryStateNotifier extends ValueNotifier<List<String>> {
     setCategoryList(newCategoryList);
   }
 
-  void addCategoryToCategoryList(String category) {
+  void addCategory(String category) {
     setCategoryList(List.from(value)..add(category));
   }
 }

@@ -23,7 +23,7 @@ Future<void> showTypeDeleteDialog(
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
-                typeStateManager.deleteTypeFromTypeList(deletedType);
+                typeStateManager.deleteType(deletedType);
                 Navigator.of(context).pop();
               },
               child: const Text('OK'),
