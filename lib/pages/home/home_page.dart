@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/category/category_page.dart';
-import 'package:flutter_prj_1/pages/category/widgets/category_dialog.dart';
+import 'package:flutter_prj_1/pages/category/widgets/category_add_dialog.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/type/type_page.dart';
 import 'package:flutter_prj_1/pages/type/widgets/type_add_dialog.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
+import 'package:flutter_prj_1/state/managers/category_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/settings_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/type_state_manager.dart';
 import 'package:flutter_prj_1/state/services/service_locator.dart';
@@ -34,7 +35,9 @@ class _HomePageState extends State<HomePage> {
   String _title = dashboard_label;
   Color themeUnSelectedColor = Colors.blue;
   Color themeSelectedColor = Colors.indigo;
+
   final typeStateManager = getIt<TypeStateManager>();
+  final categoryStateManager = getIt<CategoryStateManager>();
 
   @override
   initState() {
@@ -43,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     themeUnSelectedColor = Colors.blue;
     themeSelectedColor = Colors.indigo;
 
-    startDialogWelcome();
+    // startDialogWelcome();
 
     super.initState();
   }
@@ -86,15 +89,15 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: themeUnSelectedColor,
             actions: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 23.0),
                 child: _hasAddButton(context)
                     ? GestureDetector(
                         onTap: () {
                           _handleAddActionButtonPressed();
                         },
                         child: const Icon(
-                          Icons.add,
-                          size: 26.0,
+                          Icons.add_circle,
+                          size: 31.0,
                         ),
                       )
                     : null,
@@ -123,11 +126,11 @@ class _HomePageState extends State<HomePage> {
                 label: reminders_label,
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.category_rounded),
+                icon: Icon(Icons.interests_rounded),
                 label: categories_label,
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.category_outlined),
+                icon: Icon(Icons.category_rounded),
                 label: types_label,
               ),
               BottomNavigationBarItem(
@@ -156,10 +159,9 @@ class _HomePageState extends State<HomePage> {
 
   void _handleAddActionButtonPressed() {
     if (_pageIndex == 2) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return const CategoryDialog();
+      asyncCategoryAddDialog(context).then((value) => {
+            if (value != null)
+              {categoryStateManager.addCategoryToCategoryList(value)}
           });
     }
     if (_pageIndex == 3) {

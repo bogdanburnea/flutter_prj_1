@@ -14,15 +14,13 @@ void main() {
 
   // settings state
   final settingsStateManager = getIt<SettingsStateManager>();
-
-  print(
-      '[main] settingsStateManager.getDarkTheme: ${settingsStateManager.getDarkTheme()}');
-  print(
-      '[main] settingsStateManager.getColorTheme: ${settingsStateManager.getColorTheme()}');
+  // print(
+  //     '[main] settingsStateManager.getDarkTheme: ${settingsStateManager.getDarkTheme()}');
+  // print(
+  //     '[main] settingsStateManager.getColorTheme: ${settingsStateManager.getColorTheme()}');
 
   // user profile state
   final userProfileStateManager = getIt<UserProfileStateManager>();
-
   if (userProfileStateManager.getUserName() == "initialUserName") {
     // generate a random userName
     String randomUsername = UsernameGen.generateWith();
@@ -32,15 +30,12 @@ void main() {
   }
 
   final categoryStateManager = getIt<CategoryStateManager>();
-
-  print(
-      '[main] categoryStateManager.getCategoryList: ${categoryStateManager.getCategoryList()}');
-
+  // print(
+  //     '[main] categoryStateManager.getCategoryList: ${categoryStateManager.getCategoryList()}');
 
   final typeStateManager = getIt<TypeStateManager>();
-
-  print(
-      '[main] typeStateManager.getTypeList: ${typeStateManager.getTypeList()}');
+  // print(
+  //     '[main] typeStateManager.getTypeList: ${typeStateManager.getTypeList()}');
 
   // here can go other init, for example contacting web server
 

@@ -16,6 +16,30 @@ class CategoryStateNotifier extends ValueNotifier<List<String>> {
   }
 
   void setCategoryList(List<String> categoryList) {
+    // Set.from.list ensures that list elements are unique
+    List<String> newCategoryList = List.from(Set.from(categoryList));
+
+    newCategoryList.sort((a, b) {
+      return a.toLowerCase().compareTo(b.toLowerCase());
+    });
+
+    value = newCategoryList;
     sharedPreferencesStorageService.setCategoryList(categoryList);
+  }
+
+  void deleteCategoryFromCategoryList(String category) {
+    List<String>? categoryList = value;
+    List<String> newCategoryList = [];
+
+    categoryList.forEach((element) {
+      if (element != category) {
+        newCategoryList.add(element);
+      }
+    });
+    setCategoryList(newCategoryList);
+  }
+
+  void addCategoryToCategoryList(String category) {
+    setCategoryList(List.from(value)..add(category));
   }
 }

@@ -10,7 +10,7 @@ class CategoryWidget extends StatelessWidget {
     final categoryStateManager = getIt<CategoryStateManager>();
 
     return ValueListenableBuilder<List<String>>(
-      valueListenable: categoryStateManager.categoryNotifier,
+      valueListenable: categoryStateManager.categoryStateNotifier,
       builder: (context, categoryList, child) {
         print('[CategoryWidget] build, categoryList: $categoryList');
 
@@ -20,13 +20,13 @@ class CategoryWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               leading: IconButton(
-                icon: const Icon(Icons.category_rounded),
+                icon: const Icon(Icons.interests_rounded),
                 onPressed: () {},
               ),
               title: Text(categoryList[index]),
               trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: const Icon(Icons.edit),
                   onPressed: () async {},
                 ),
                 IconButton(

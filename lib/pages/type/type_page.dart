@@ -42,7 +42,7 @@ class _TypePageState extends State<TypePage> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: IconButton(
-                          icon: const Icon(Icons.category_outlined),
+                          icon: const Icon(Icons.category_rounded),
                           onPressed: () {},
                         ),
                         title: Text(typeList[index]),
