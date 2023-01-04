@@ -43,7 +43,25 @@ class _HomePageState extends State<HomePage> {
     themeUnSelectedColor = Colors.blue;
     themeSelectedColor = Colors.indigo;
 
+    startDialogWelcome();
+
     super.initState();
+  }
+
+  Future<void> startDialogWelcome() async {
+    await Future.delayed(const Duration(seconds: 2), () {
+      _showDialogWelcome();
+    });
+  }
+
+  void _showDialogWelcome() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+              title: Text('Welcome!'),
+              content: Text('Hey! Welcome to my app!'));
+        });
   }
 
   // for vertical navigation see https://api.flutter.dev/flutter/material/NavigationRail-class.html
