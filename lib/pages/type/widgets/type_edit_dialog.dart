@@ -5,7 +5,6 @@ import 'package:flutter_prj_1/state/services/service_locator.dart';
 Future<String?> asyncTypeEditDialog(
     BuildContext context, String editedType) async {
   String newType = editedType;
-
   final typeStateManager = getIt<TypeStateManager>();
 
   return showDialog<String>(
@@ -18,10 +17,10 @@ Future<String?> asyncTypeEditDialog(
           content: Row(
             children: <Widget>[
               Expanded(
-                  child: TextField(
+                  child: TextFormField(
+                initialValue: editedType,
                 autofocus: true,
-                decoration: const InputDecoration(
-                    hintText: 'eg. Payment'),
+                decoration: const InputDecoration(hintText: 'eg. Payment'),
                 onChanged: (value) {
                   newType = value;
                 },
@@ -33,13 +32,13 @@ Future<String?> asyncTypeEditDialog(
               onPressed: () {
                 typeStateManager.deleteTypeFromTypeList(editedType);
                 typeStateManager.addTypeToTypeList(newType);
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(newType);
               },
               child: const Text('OK'),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(newType);
               },
               child: const Text('Cancel'),
             ),

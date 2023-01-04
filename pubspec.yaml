@@ -40,7 +40,6 @@ dependencies:
   get_it: ^6.0.0
   flutter_launcher_icons: ^0.11.0
   shared_preferences: ^2.0.5
-  sorted_list: ^1.0.0
 
 flutter_icons:
   android: "launcher_icon"
