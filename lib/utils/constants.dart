@@ -5,6 +5,10 @@ class Constants {
 
   static const String initialUserName = "initialUserName";
 
+  static const initialReminderList = [
+    {"name", "description", "2023-01-01"}
+  ];
+
   static const List<String> initialCategoryList = [
     "Car",
     "Family",

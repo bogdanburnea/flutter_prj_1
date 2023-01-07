@@ -8,6 +8,7 @@ class SharedPreferencesStorage extends SharedPreferencesStorageService {
   static const category_list_key = 'category_list';
   static const type_list_key = 'type_list';
   static const color_theme_key = 'color_theme';
+  static const reminder_list_key = 'reminder_list';
 
   @override
   Future<String?> getUserName() async {
@@ -67,5 +68,17 @@ class SharedPreferencesStorage extends SharedPreferencesStorageService {
   Future<void> setTypeList(List<String> typeList) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setStringList(type_list_key, typeList);
+  }
+
+  @override
+  Future<List<String>?> getReminderList() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList(reminder_list_key);
+  }
+
+  @override
+  Future<void> setReminderList(List<String> reminderList) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setStringList(reminder_list_key, reminderList);
   }
 }

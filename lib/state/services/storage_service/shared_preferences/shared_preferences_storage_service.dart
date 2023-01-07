@@ -18,4 +18,8 @@ abstract class SharedPreferencesStorageService {
   Future<List<String>?> getTypeList();
 
   Future<void> setTypeList(List<String> typeList);
+
+  Future<List<String>?> getReminderList();
+
+  Future<void> setReminderList(List<String> typeList);
 }
