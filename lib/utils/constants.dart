@@ -1,3 +1,5 @@
+import 'package:flutter_prj_1/state/objects/reminder.dart';
+
 class Constants {
   static const bool initialDarkTheme = false;
 
@@ -5,9 +7,10 @@ class Constants {
 
   static const String initialUserName = "initialUserName";
 
-  static const initialReminderList = [
-    {"name", "description", "2023-01-01"}
-  ];
+  static const Reminder initialReminder =
+      Reminder(name: "name", description: "description");
+
+  static const List<Reminder> initialReminderList = [initialReminder];
 
   static const List<String> initialCategoryList = [
     "Car",

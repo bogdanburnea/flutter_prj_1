@@ -1,4 +1,5 @@
 import 'package:flutter_prj_1/state/managers/category_state_manager.dart';
+import 'package:flutter_prj_1/state/managers/reminder_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/settings_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/type_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/user_profile_state_manager.dart';
@@ -23,6 +24,9 @@ void setupGetIt() {
 
   // state management layer
   getIt.registerLazySingleton<TypeStateManager>(() => TypeStateManager());
+
+  // state management layer
+  getIt.registerLazySingleton<ReminderStateManager>(() => ReminderStateManager());
 
   // shared preferences storage
   getIt.registerLazySingleton<SharedPreferencesStorageService>(() => SharedPreferencesStorage());

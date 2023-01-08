@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_1/pages/category/category_page.dart';
 import 'package:flutter_prj_1/pages/category/widgets/category_add_dialog.dart';
+import 'package:flutter_prj_1/pages/reminder/reminder_page.dart';
+import 'package:flutter_prj_1/pages/reminder/widgets/reminder_add_dialog.dart';
 import 'package:flutter_prj_1/pages/settings/settings_page.dart';
 import 'package:flutter_prj_1/pages/type/type_page.dart';
 import 'package:flutter_prj_1/pages/type/widgets/type_add_dialog.dart';
 import 'package:flutter_prj_1/pages/user_profile/user_profile_page.dart';
 import 'package:flutter_prj_1/state/managers/category_state_manager.dart';
+import 'package:flutter_prj_1/state/managers/reminder_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/settings_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/type_state_manager.dart';
+import 'package:flutter_prj_1/state/objects/reminder.dart';
 import 'package:flutter_prj_1/state/services/service_locator.dart';
 import 'package:flutter_prj_1/utils/utils.dart';
 
@@ -38,6 +42,7 @@ class _HomePageState extends State<HomePage> {
 
   final typeStateManager = getIt<TypeStateManager>();
   final categoryStateManager = getIt<CategoryStateManager>();
+  final reminderStateManager = getIt<ReminderStateManager>();
 
   @override
   initState() {
@@ -151,17 +156,26 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool _hasAddButton(BuildContext context) {
-    if (_pageIndex == 2 || _pageIndex == 3) {
+    if (_pageIndex == 1 || _pageIndex == 2 || _pageIndex == 3) {
       return true;
     }
     return false;
   }
 
   void _handleAddActionButtonPressed() {
+    if (_pageIndex == 1) {
+      // TODO: here we need a reminder object instead of a string
+      asyncReminderAddDialog(context).then((value) => {
+            if (value != null)
+              {
+                reminderStateManager.addReminder(
+                    Reminder(name: value, description: "description"))
+              }
+          });
+    }
     if (_pageIndex == 2) {
       asyncCategoryAddDialog(context).then((value) => {
-            if (value != null)
-              {categoryStateManager.addCategory(value)}
+            if (value != null) {categoryStateManager.addCategory(value)}
           });
     }
     if (_pageIndex == 3) {
@@ -222,7 +236,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return const Center(child: Text('Dashboard page'));
       case 1:
-        return const Center(child: Text('Reminders page'));
+        return const ReminderPage();
       case 2:
         return const CategoryPage();
       case 3:
