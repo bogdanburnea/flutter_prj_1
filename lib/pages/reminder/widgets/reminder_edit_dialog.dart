@@ -5,7 +5,6 @@ import 'package:flutter_prj_1/state/services/service_locator.dart';
 
 Future<String?> asyncReminderEditDialog(
     BuildContext context, Reminder editedReminder) async {
-
   Reminder newReminder = editedReminder;
   final reminderStateManager = getIt<ReminderStateManager>();
 
@@ -24,7 +23,14 @@ Future<String?> asyncReminderEditDialog(
                 autofocus: true,
                 decoration: const InputDecoration(hintText: 'eg. Payment'),
                 onChanged: (value) {
-                  newReminder = Reminder(name: value, description: editedReminder.description);
+                  newReminder = Reminder(
+                      name: value,
+                      reminderType: editedReminder.reminderType,
+                      description: editedReminder.description,
+                      reminderFrequency: editedReminder.reminderFrequency,
+                      sendNotification: editedReminder.sendNotification,
+                      notificationFrequency:
+                          editedReminder.notificationFrequency);
                 },
               ))
             ],

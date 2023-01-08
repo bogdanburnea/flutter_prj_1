@@ -1,4 +1,7 @@
 import 'package:flutter_prj_1/state/objects/reminder.dart';
+import 'package:flutter_prj_1/utils/notification_frequency.dart';
+import 'package:flutter_prj_1/utils/reminder_frequency.dart';
+import 'package:flutter_prj_1/utils/reminder_type.dart';
 
 class Constants {
   static const bool initialDarkTheme = false;
@@ -7,8 +10,14 @@ class Constants {
 
   static const String initialUserName = "initialUserName";
 
-  static const Reminder initialReminder =
-      Reminder(name: "name", description: "description");
+  // initial reminder with birthday
+  static const Reminder initialReminder = Reminder(
+      name: "name",
+      reminderType: ReminderType.personal,
+      description: "description",
+      reminderFrequency: ReminderFrequency.year,
+      sendNotification: false,
+      notificationFrequency: NotificationFrequency.day);
 
   static const List<Reminder> initialReminderList = [initialReminder];
 

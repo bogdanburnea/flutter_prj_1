@@ -29,7 +29,7 @@ class _ReminderPageState extends State<ReminderPage> {
     return ValueListenableBuilder<List<Reminder>>(
         valueListenable: reminderStateManager.reminderStateNotifier,
         builder: (context, reminderList, child) {
-          print('[ReminderPage] categoryList: $reminderList');
+          print('[ReminderPage] reminderList: ${Reminder.encode(reminderList)}');
 
           return ValueListenableBuilder<String>(
               valueListenable: settingsStateManager.colorThemeStateNotifier,
@@ -55,8 +55,8 @@ class _ReminderPageState extends State<ReminderPage> {
                                 icon: const Icon(Icons.edit),
                                 onPressed: () async {
                                   final String? newText =
-                                      await asyncReminderEditDialog(
-                                          context, reminderList[index]);
+                                  await asyncReminderEditDialog(
+                                      context, reminderList[index]);
                                 },
                               ),
                               IconButton(

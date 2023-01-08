@@ -13,6 +13,9 @@ import 'package:flutter_prj_1/state/managers/settings_state_manager.dart';
 import 'package:flutter_prj_1/state/managers/type_state_manager.dart';
 import 'package:flutter_prj_1/state/objects/reminder.dart';
 import 'package:flutter_prj_1/state/services/service_locator.dart';
+import 'package:flutter_prj_1/utils/notification_frequency.dart';
+import 'package:flutter_prj_1/utils/reminder_frequency.dart';
+import 'package:flutter_prj_1/utils/reminder_type.dart';
 import 'package:flutter_prj_1/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
@@ -168,8 +171,13 @@ class _HomePageState extends State<HomePage> {
       asyncReminderAddDialog(context).then((value) => {
             if (value != null)
               {
-                reminderStateManager.addReminder(
-                    Reminder(name: value, description: "description"))
+                reminderStateManager.addReminder(Reminder(
+                    name: value,
+                    reminderType: ReminderType.personal,
+                    description: "description",
+                    reminderFrequency: ReminderFrequency.year,
+                    sendNotification: false,
+                    notificationFrequency: NotificationFrequency.day))
               }
           });
     }
