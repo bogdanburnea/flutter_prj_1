@@ -26,7 +26,9 @@ class Constants {
     "Family",
     "Friends",
     "Home",
-    "Personal"
+    "Miscellaneous",
+    "Personal",
+    "Work",
   ];
 
   static const List<String> initialTypeList = [
